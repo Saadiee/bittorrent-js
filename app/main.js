@@ -12,7 +12,7 @@ function decodeBencode(bencodedValue) {
   }
   // Decode List
   else if (bencodedValue[0] === "l") {
-    decodeDictionary(bencodedValue)
+    decodeList(bencodedValue)
   }
   else {
     throw new Error("Only strings are supported at the moment");
@@ -58,7 +58,7 @@ function decodeNumber(bencodedValue) {
   return Number(bencodedValue.slice(1, - 1))
 }
 
-function decodeDictionary(bencodedValue) {
+function decodeList(bencodedValue) {
   const bencodeList = []
   bencodedValue = bencodedValue.slice(1, bencodedValue.lastIndexOf('e'))
   const indexOfi = bencodedValue.indexOf("i");
